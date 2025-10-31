@@ -1,0 +1,117 @@
+---
+title: "Annotated Bibliography"
+author: "Lauren Berger"
+output:
+  html_document: default
+  pdf_document: default
+bibliography: GRFP(1).bib
+csl: apa.csl
+---
+
+
+### Bowd, E. J. et al. (2021). *Prior disturbance legacy effects on plant recovery post‐high-severity wildfire*
+
+**Citation** [@bowdPriorDisturbanceLegacy2021]
+
+**Summary**: Explores how past land use and disturbance history (such as logging and prescribed burning) influence vegetation recovery after high-severity wildfire events. Using data from long-term ecological monitoring in southeastern Australia, the authors found that areas with a legacy of logging or other disturbances exhibited reduced native plant richness and increased weed invasion following wildfire. The study emphasizes that pre-fire land management plays a critical role in shaping post-fire ecological trajectories, with implications for biodiversity conservation and landscape resilience in fire-prone regions.
+
+**Evaluation**: Provides empirical evidence that prior stand histories impact plant regeneration after fire, serving as a useful resource in predicting forest recovery. Study is limited in geographic scope and may not be broadly applicable. 
+
+**Relevance**: Provides a detailed overview on statiscal approaches for quantifying how varying stand-age catagories influence post fire species richness. 
+
+
+### Burkle, L. A. et al. (2015). *Wildfire disturbance and productivity as drivers of plant species diversity across spatial scales*
+
+**Citation**[@burkleWildfireDisturbanceProductivity2015]
+
+**Summary**: This study explores the mechanisms by which wildfire patterns and severity influence biodiversity across environmental gradients. Found that mixed-diversity fire results in the highest beta diversity of forb species, and is higher in burned than unburned landscapes at low productivity sites, but lower at high productivity sites. Both forbs and woody species had overall higher species richness in mixed-severity fire sites than high-severity fire sites. Sampled from plant communities along fire and productivity gradients. Performed analysis on richness, beta-diversity, and species composition broken down by plant class between different areas of fire severity.
+
+**Evaluation**: Strengths: robust sampling and analysis, applicable to management decisions within a region. Weaknesses: limited in geographical scope, separates fire into three classes and may leave out finer scale. 
+
+**Relevance**: Statistical analysis of species richness is relevant; utilizes Hurlbert's Probability of Interspecific Encounter (PIE) and a MANOVA. Could be applied, or at least considered, in my analysis.
+
+### Fukami, T. (2015). *Historical Contingency in Community Assembly: Integrating Niches, Species Pools, and Priority Effects*
+
+**Citation**: [@fukamiHistoricalContingencyCommunity2015]
+
+**Summary**: Provides a definition and detailed overview on how historical contingency and priority effects may impact species pools. Defines priority effects as the sequence and timing of species arrivals, caused by historical contingency (past disturbance events). Priority effects may either preempt or modify niches based on species arrival time. Explores how regional species pools impacted priority effects come to be, and the conditions by which historical contingency would be expected. 
+
+**Evaluation**: This paper serves as a strong conceptual basis and overview on understanding the factors that influence historical contingency, and advocates for it’s consideration in evaluating community ecology. Expresses that historical contingency alone cannot make ecology more predictive, but is an additional tool in organization framework. 
+
+**Relevanc**e: Provides support for applying a lense of historical contingency and consideration of priority effects in my analysis on how plant-pollinator communities are shaped by distance into high severity fire patches. Emphasizes that species traits and immigration ability are important considerations in the likeliness of priority effects occuring. As recolonization is neccesary after a high severity fire events (ie seed banks and bees wiped out), my analysis will be (an important evaluation.
+
+### Johnstone, J. F. et al. (2016). *Changing disturbance regimes, ecological memory, and forest resilience*
+
+**Citation**: [@johnstoneChangingDisturbanceRegimes2016]
+
+**Summary**: This paper provides a comprehensive synthesis detailing how ecological memory persists in forest ecosystems for years, decades, or even centuries – influencing how forests respond to subsequent disturbances. Past disturbances can influence forest resilience and trigger reorganizations into new ecosystem states. The authors highlight that focusing on disturbance legacies can highlight where forests may be most vulnerable to climate change. 
+
+**Evaluation**: Provides a useful conceptual framework that is clearly defined in terms of what the impacts of changing disturbance regimes will be utilizing multiple examples. Not largely quantitative and limited in geographic scope 
+
+**Relevance**: Provides a useful framework and definitions for which kinds of legacies may persist in forest following disturbance and an overview of ecological memory. Serves as a call to test said ideas presented in the paper to determine how post-disturbance forest dynamics are playing out in the context of historical contingency.
+
+### Miller, J. E. D., & Safford, H. D. (2020). *Are plant community responses to wildfire contingent upon historical disturbance regimes?*
+
+**Citation**: [@millerArePlantCommunity2020]
+
+**Summary**: A large scale meta-analysis focused on studies that analysed post-fire plant communities. Studies had to have at least two levels of burn severity to be compared against one and another and species richness reported as the response variable. 32 studies were chosen for analysis and all analyzed plot-level (alpha) diversity. While the authors hypothesize that theory would predict that diversity should be highest at intermediate disturbance levels, the review finds that hump-shaped or saturating diversity responses to fire are common in ecosystems with historically low- to moderate-severity fires. However, in ecosystems historically dominated by high-severity fires, diversity often peaks after high-severity disturbances. These patterns contradict traditional theory, which predicts stronger negative effects of disturbance in low-productivity systems. The authors suggest that historical fire regimes (i.e. historical contingency) should be included in disturbance-diversity theory alongside disturbance frequency, intensity, and productivity.
+
+**Evaluation**: Because this research is a meta-analysis - it does not delve into community response, however the studies cited stand as a useful starting point fo similiar study designs. It is alo difficult to compare studies that use different field studies and there is a relatively limited body of research on multiple fire regimes that is lacking in geographic exctent. 
+
+**Relevance**: This analysis provides support for applying historical contingency in consideration of fires impact on diversity. Given the cascades history of fire, simply considering disturbance theory may not be sufficient. 
+
+### Ponisio, L. C. et al. (2016). *Pyrodiversity begets plant-pollinator community diversity*
+
+**Citation**: [@ponisioPyrodiversityBegetsPlant2016]
+
+**Summary**: Explores whether pyrodiversity impacts biodiversity. The study focused on the llilouette Creek Basin of Yosemite National Park, in the central Sierra Nevada of California. Plant and pollinator community surveys were conducted 9- 12 years after fire and surveyed a gradient of fire diversity as confirmed by dNBR information. Generalized linear mixed models were utilized to determine if plant-pollinator richness for each sample site was impacted by pyrodiversity. The same testing was conducted for environmental heterogeneity to analyze the additional impact of drought, and species turnover between sites was also analyzed. Results indicate that higher pyrodiversity was correlated with higher richness of flowering plants, pollinators, and plant–pollinator interactions. 
+**Evaluation**: This study captures a large area, pyrodiversity gradient, and conducted a clear interaction analysis. The limitations of this study in evaluating pyrodiversity are that studies were conducted during a drought year and may be limited in applicability to pyrodiversity analysis on sites unimpacted by drought. 
+
+**Relevance**: I will draw primarily on the richness comparison and incorporate similar methods in my analysis. This paper also provides a relevant and useful framework for calculating pyro-divesity utilizing dNBR information. 
+
+### Reilly, M. J. (Year). *Cascadia Burning: The historic, but not historically unprecedented, 2020 wildfires in the Pacific Northwest, USA*
+
+**Citation**: [@reillyCascadiaBurningHistoric2022]
+
+**Summary**: This paper provides a comprehensive synthesis of the environmental drivers that influenced the 2020 labor day fires in the West Cascades. While these fires were labeled as an unprecedented historical event in terms of size and severity for the region, reports from the early 20th century and paleo- and dendro-ecological records indicate that similar and potentially even larger wildfires have occurred over the past millennium – sharing many of the same characteristics. This paper explores the ecological impacts of large fire events in the Western Cascades – stating that high-severity fire events can generate early seral habitat that foster biodiversity – but can also lead to habitat fragmentation and the introduction of non-native species that can have detrimental effects on post-fire plant and pollinator communities. 
+
+**Evaluation**: This paper provides a detailed and well cited history of historical fire regimes into analyzing if the 2020 labor day fires were a result of climate change, or more consistent with historical fire. A potential weakness that the authors state is that the impacts of climate change on dry, eastside winds that caused fire are still poorly understood. Another potential weakness is that this paper evaluates early colonial records, but has limited input of indigenous records pre-dating colonialism about fire history. While Paleoecological records reflect a history of fire in the region, it does not draw on how impacts of logging practices post-colonialism may have influenced the 2020 labor day fires. 
+
+**Relevance**: This paper provides a reframing of how to view fire history in the region, providing empirical evidence that the 2020 labor day fires are not entirely something new for this region. Also raises important considerations for variables that are likely to influence landscape following fire events, such as species.
+
+### Steel, Z. L. et al. (2022). *When bigger isn’t better—Implications of large high-severity wildfire patches for avian diversity and community composition*
+
+**Citation**[@steelWhenBiggerIsnt2022]
+
+**Summary**: Evaluates the impact of increasing high-severity fire patch size, and increased distance from unimpacted edges, on bird communities. Utilizes multi-year avian-point count surveys completed in 27 different fires; collected 10 or more years since disturbance and consisting of varying levels of patch sizes. Analysis of both alpha and beta diversity found that in comparison to patch edges, and smaller patches of high-severity fire, interiors of large patches supported fewer species and displayed lower rates of species richness since the time of last fire. 
+
+**Evaluation**: As with any ecological field study, sampling methods may favor certain bird species. While a null model is not explicitly addressed, the authors cite (Chase et al., 2011) and utilize a Raup–Crick Index in their analysis of beta-diversity to adjust for differences in species richness. In their alpha diversity analysis, assessment is based on only species richness, as an analysis of species abundance cannot be completed with only occupancy models. 
+
+**Relevance**: This paper is very relevant to my research, as I will be completing a similar analysis, but with plants and pollinators. The statistical methods employed to calculate alpha diversity and amount of high severity fire surrounding a site will both inform my analysis and how I choose to model my results. The code for this paper is shared in Github. 
+
+### Ton, M., & Krawchuk, M. A. (2016). *The Effects of Disturbance History on Ground-Layer Plant Community Composition in British Columbia*
+
+
+**Citation**[@tonEffectsDisturbanceHistory2016]
+
+**Summary**: Evaluates if the double disturbance of logging followed in quick succession by high-severity fire impacts plant community composition in comparison to sites only impacted by high severity fire and left unlogged. Plant community data was collected from 31 sites, and all vascular plants and bryophytes were identified to species when possible. Plant traits of  height, length, and leaf area data were also recorded. Analysis of community richness, diversity, and evenness was completed, in addition to analysis on traits, indicator species, and composition. Results found a significant difference in taxonomic composition and shrub mass between sites, but not in species richness, diversity, and evenness. 
+
+**Evaluation**: This study is able to utilize a natural experiment design to compare to treatments (logged and unlogged). The field sample is robust, and represents all plant groups. This study is limited in temporal scale, and  produced modest results that may be lacking in consideration of broader environmental influences (proximity to roads and unburned locations). 
+
+**Relevance**: As my analysis will be examining similar questions, this paper supports the utilization of the Shannon-Wiener index to calculate diversity. This paper also presents an approach I had not considered of using Canonical Correspondence Analysis (CCA) which allows for accounting of environmental variability in soil pH and canopy cover. While I don’t have detailed information on these environmental conditions, I may be able to incorporate it into my analysis.
+
+### Ulyshen, M. D. et al. (Year). *Forest pollinator richness declines with distance into burned areas*
+
+**Citation**: [@ulyshenForestPollinatorRichness2024]
+
+**Summary**: Evaluates how pollinator richness and abundance are impacted by increased distance into burned areas. Researchers conducted pollinator surveys from edges of burned areas towards the center along 500 meters. Richness and abundance were calculated as response variables based upon distance into these burned areas. The authors found a significant decline in richness at the center of burn units, but abundance did not show a decline. However, in accounting for pollinator size, the abundance of small pollinators decreased and large pollinators increased with distance into a burn unit. Multiple models were utilized in R to test which most accurately modeled these abundance and richness relationships. 
+
+**Evaluation**: The strengths of this study are that a it covers a broad taxonomic range of pollinators – not just bees – to analysis impact on pollinator communities as a whole. The study  design is centered on sites with similar treatments (all in controlled burns), providing a homogenous burn area. This is both a strength, and weakness, as the proximity to unburned habitats may not be reflective wildfire. As with all pollinator surveys, possible bias may exist in sampling. 
+
+**Relevance**: Serves as a useful comparison for testing both richness and abundance in proximity for distance into burn. Their statistical analysis portion offers a summary of several different models, and posses an alternative of not only looking at abundance but abundance based on size. This research also provides support for the analysis I want to conduct, and suggests a strong relationship between proximity to unburned edges and pollinator richness.
+
+
+
+  
+
+  
