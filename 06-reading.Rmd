@@ -1,0 +1,21 @@
+## Discussion & Reflection: Yeakel et al. (2014): Collapse of an ecological network in Ancient Egypt
+
+> **How to use this section:** Read the article below (embedded) and prepare your answers to the discussion prompts. Bring notes to class.
+
+### Article (embedded)
+<div style="margin: 1rem 0;">
+<embed src="readings/reading-Yeakel2014.pdf" type="application/pdf" width="100%" height="800px" />
+</div>
+
+### Reflection and in-class discussion Questions 
+
+1. Climate and Political Change
+The paper links pulses of aridification to social and political upheaval (collapse of Old Kingdom, First Intermediate Period, fall of the New Kingdom). Do you think ecological collapse drove political instability, or was it the other way around? Defend your view by drawing connections between ecology and human history.
+
+In many instances, I think ecological collapse drives political instability. A more recent ecological collapse, the dustbowl, provides a framework that supports this idea. The Great Plains were devestated by a combination of misinformed farming practices and drought - leading to massive crop failure and unsafe living conditiions for a large portion of the United States. This environmental collapse caused a mass exodus from the region, and socioeconimic collapse for many farmers. 
+
+2. Modern Parallels
+Identify one modern ecosystem facing similar pressures (climate change, habitat loss, overexploitation). Compare it with Ancient Egypt: what lessons can be drawn about stability, redundancy, and persistence? What might the Yeakel framework suggest about its trajectory?
+
+A modern ecosystem facing similar pressures is right here in UO's backyard, the Willamette Valley. Somewhere between 90 - 97% of Willamette Valley prairie habitat has been lost due to development and agriculture (habitat loss, overexploitation). The species most impacted by this fragmentation and habitat loss have been plant and pollinator species; such as the fenders blue butterfly and kincaid's lupine. A point the Yeakel paper makes is that because predator–prey interactions are a largely dependent on body size, the Egyptian trophic network is relatively robust to changes in presence/absence of mammal species. In thinking of a place like the WV where habitat loss is not impacting mammals in the same way, the impact on trophic networks may be different. The paper also suggests that "the vulnerability of contemporary animal communities may be exacerbated by recent erosion of species richness, which our data suggest eliminates the functional redundancy of lower trophic-level species."
+
