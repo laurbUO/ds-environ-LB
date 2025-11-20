@@ -1,0 +1,394 @@
+## Lab: Spatial data 1: Oregon Fires (Student Version)
+
+
+```{r load-libraries-3, echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+library(terra) 
+library(ggplot2)
+library(dplyr)
+library(RColorBrewer)
+library(sf) 
+```
+
+**Conservation/ecology Topics**
+
+- Explore how Oregon fires are changing due to fire suppression and climate change. 
+- Describe fundamental concepts in fire ecology, including fire severity.
+
+**Statistical Topics**
+
+- Describe the fundamental attributes of a raster dataset.
+
+**Computational Topics**
+
+- Explore raster attributes and metadata using R.
+- Import rasters into R using the `terra` package.
+- Plot raster files in R using the `ggplot2` package.
+- Reproject raster and vector data
+- Layer raster and vector data together
+
+**Lab part 1: reading in fire raster data and plotting**
+
+We will be working with the soil burn severity data from the 2020 Holiday Farm Fire (up the McKenzie E of Eugene), the 2020 Beachie Fire (near Portland) and the 2018 Terwilliger fire (up the McKenzie E of Eugene, near Cougar hotsprings). 
+
+We will use data downloaded from the USGS:
+https://burnseverity.cr.usgs.gov/products/baer
+
+Specifically, BARC Fire Severity layers are created by first calculating spectral indices from pre- and post-fire satellite imagery that are sensitive to changes caused by fire.  The two images are then subtracted showing the difference between them which is then binned into 4 burn severity classes (high, moderate, low, very low/unburned). Field crews ground-truth the severity classes.
+
+The metadata files provide additional details on how the continuous data was binned into discrete catagories. 
+
+- 1a. Read in each fire severity rasters, name them [fire name]_rast. The .tif files are the rasters.
+
+HINT: The files are nested within folders so be aware of your file paths.
+
+```{r}
+Holiday_rast <- rast('/Users/laurenberger/Library/CloudStorage/Dropbox-UniversityofOregon/Lauren Berger/ds-environ/labs/data/soil-burn-severity/2020_holidayfarm_sbs/HolidayFarm_SBS_final.tif')
+
+Beachie_rast <- rast('/Users/laurenberger/Library/CloudStorage/Dropbox-UniversityofOregon/Lauren Berger/ds-environ/labs/data/soil-burn-severity/2020_beachiecreek_sbs/BeachieCreek_SBS_final.tif')
+
+Ter_rast <- rast('/Users/laurenberger/Library/CloudStorage/Dropbox-UniversityofOregon/Lauren Berger/ds-environ/labs/data/soil-burn-severity/2018_terwilliger_sbs/SoilSeverity.tif')
+
+
+```
+
+- 1b. Summarize the values of the rasters. Take note of the labels associated with the data values because you will need it for plotting.
+
+```{r}
+
+summary(values(Holiday_rast))
+
+summary(values(Beachie_rast))
+
+summary(values(Ter_rast))
+
+```
+
+- 1c. Plot each raster.. Set the scale to be  `scale_fill_brewer(palette = "Spectral", direction=-1)`
+
+HINT: Remember we have to turn them into "data.frames" for ggplot to recognize them as plot-able. 
+
+HINT HINT: Remember to check the labels of the data values to be able to set the fill.
+
+
+```{r, fig.cap="Holiday plot with ggplot2 using the Spectral color scale"}
+
+summary(Holiday_rast)
+
+Holiday_rast_df <- as.data.frame(Holiday_rast, xy = TRUE)
+
+Holiday_rast_df$Layer_1 <- as.factor(Holiday_rast_df$Layer_1)
+
+ggplot() +
+    geom_raster(data = Holiday_rast_df, aes(x = x, y = y, fill = Layer_1)) +
+  scale_fill_brewer(palette = "Spectral", direction=-1)
+
+
+```
+
+```{r,fig.cap="Beachie plot with ggplot2 using the Spectral color scale"}
+
+str(Beachie_rast)
+
+Beachie_rast_df <- as.data.frame(Beachie_rast, xy = TRUE)
+
+Beachie_rast_df$Layer_1 <- as.factor(Beachie_rast_df$Layer_1)
+
+ggplot() +
+    geom_raster(data = Beachie_rast_df, aes(x = x, y = y, fill = Layer_1)) +
+  scale_fill_brewer(palette = "Spectral", direction=-1)
+
+
+```
+
+```{r, fig.cap="Terwilliger plot with ggplot2 using the Spectral color scale"}
+summary(Ter_rast)
+
+Ter_rast_df <- as.data.frame(Ter_rast, xy = TRUE)
+
+ggplot() +
+    geom_raster(data = Ter_rast_df, aes(x = x, y = y, fill = SoilBurnSe)) +
+  scale_fill_brewer(palette = "Spectral", direction=-1)
+
+
+```
+
+- 1d. Compare these visualizations what is something you notice?
+-ANSWER: 
+
+**Lab part 2: Exploring the attributes of our spatial data.**
+
+- 2a. What are the crs of the rasters? What are the units? Are they all the same? 
+
+```{r}
+crs(Holiday_rast, proj = TRUE)
+crs(Beachie_rast, proj = TRUE)
+crs(Ter_rast, proj = TRUE)
+
+```
+
+- ANSWER crs: Holiday:+proj=utm +zone=10 +datum=NAD83 +units=m +no_defs 
+Beachie:+proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +no_defs
+Terwilliger: proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +no_defs
+- ANSWER units: Holiday:units=m
+Beachie:units=m 
+Terwilliger:units=m
+- ANSWER the same? The units are different between Holiday and the other two fires; Holiday is in is in UTM and the other two fires are AEA
+The same?
+The units are the same between the three fires (all meters)
+- 2b. What about the resolution of each raster?
+
+```{r, resolution}
+res(Holiday_rast)
+res(Beachie_rast)
+res(Ter_rast)
+
+```
+
+- ANSWER resolution: Holiday: 20 20 Beachie: 20 20 Terwilliger: 30 30
+- ANSWER the same? Holiday and Beachie have the same resolution, Terwilliger does not 
+
+- 2c. Calculate the min and max values of each raster. Are they all the same?
+
+```{r, minmax}
+minmax(Holiday_rast)
+
+minmax(Beachie_rast)
+
+minmax(Ter_rast)
+
+```
+- ANSWER minmax: Holiday: min       1, max     127
+Beachie: min       1, max     127
+Terwilliger: min          1, max          4
+- ANSWER the same? Holiday and Beachier are the same; Terwilliger has a smaller max value 
+
+Given we expect there to be 4 values for each bin of severity (high, moderate, low, very low/unburned), let's try to work out why there are values other than 1-4. After checking the metadata .txt and inspecting the metadata in the raster itself, I could not find an explicit mention of the meaning on the non 1-4 data (maybe you can?). Not great practices USGS! :( But it is likely missing data. Let's convert the Holiday data greater than 4 to NA, just like we would a regular matrix of data.
+
+Uncomment the below.
+```{r}
+Holiday_rast[Holiday_rast > 4] <- NA
+summary(values(Holiday_rast))
+```
+That's better :) 
+
+- 2d. Do the same conversion for Beachie.
+```{r}
+Beachie_rast[Beachie_rast > 4] <- NA
+summary(values(Beachie_rast))
+```
+
+**Lab part 3: Reprojection**
+From our exploration above, the rasters are not in the same projection, so we will need to re-project them if we are going to be able to plot them together. 
+
+We can use the `project()` function to reproject a raster into a new CRS. The syntax is `project(RasterObject, crs)`
+
+- 3a. First we will reproject our `beachie_rast` raster data to match the `holidat_rast` CRS. If the resolution is different, change it to match Holiday's resolution.
+
+Don't change the name from beachie_rast.
+
+```{r}
+
+Beachie_rast <- project(Beachie_rast,
+                                 crs(Holiday_rast))
+
+
+# This should return TRUE
+crs(Beachie_rast, proj = TRUE) == crs(Holiday_rast, proj = TRUE)
+```
+
+- 3b. Now convert the Terwilliger crs to the holiday crs. If the resolution is different, change it to match Holiday's resolution.
+
+```{r}
+Ter_rast <- project(Ter_rast,
+                            crs(Holiday_rast), 
+                    res = res(Holiday_rast)) 
+
+
+# This should return TRUE TRUE
+crs(Ter_rast, proj = TRUE) == crs(Holiday_rast, proj = TRUE)
+res(Ter_rast)[2] == res(Holiday_rast)[2]
+```
+
+- 3c. Now you can plot all of the fires on the same map!
+HINT: Remember to re-make the dataframes.
+
+```{r plot-projected-raster1}
+
+Holiday_rast_df <- as.data.frame(Holiday_rast, xy = TRUE)
+Beachie_rast_df <- as.data.frame(Beachie_rast, xy = TRUE)
+Ter_rast_df <- as.data.frame(Ter_rast, xy = TRUE)
+
+ggplot() +
+     geom_raster(data = Holiday_rast_df, 
+                 aes(x = x, y = y, 
+                  fill = Layer_1)) + 
+     geom_raster(data = Beachie_rast_df, 
+                 aes(x = x, y = y, 
+                   fill = Layer_1)) +
+    geom_raster(data = Ter_rast_df, 
+                 aes(x = x, y = y, 
+                   fill = SoilBurnSe)) +
+     scale_fill_gradientn(name = "Elevation", colors = terrain.colors(10))
+
+```
+
+Well that's annoying. It appears as though in 2018 the makers of these data decided to give 1,2,3,4 categorical names which are being interpreted as two different scales. If we look at the terwilliger_rast values we can see that in min max. 
+
+```{r}
+Ter_rast$SoilBurnSe
+```
+
+- 3d. Let's deal with the the easy way and modify the dataframe. Convert High to 4, Moderate to 3, Low to 2, and Unburned to 1 using your data subsetting skills.
+
+Somethings you will need to be careful of: 
+- If you check the class of terwilliger_rast_df$SoilBurnSe it is a factor, which is a special class of data that are ordered categories with specific levels. R will not let you convert add a level. So first, convert the data to characters (using as.character()). 
+- Now the data are characters, so you will not be able to add in numerics. So code the 1,2,3 as characters i.e., "1", "2"...
+- We will eventually want the data to be factors again so it will match up with the other rasters. So lastly, convert the data to a factor (using as.factor()). 
+
+```{r}
+
+Ter_rast_df <- as.data.frame(Ter_rast, xy = TRUE)
+
+Ter_rast_df$SoilBurnSe <- as.character(Ter_rast_df$SoilBurnSe)
+
+# 2. Recode character values
+Ter_rast_df$SoilBurnSe[Ter_rast_df$SoilBurnSe == "High"]      <- "4"
+Ter_rast_df$SoilBurnSe[Ter_rast_df$SoilBurnSe == "Moderate"] <- "3"
+Ter_rast_df$SoilBurnSe[Ter_rast_df$SoilBurnSe == "Low"]      <- "2"
+Ter_rast_df$SoilBurnSe[Ter_rast_df$SoilBurnSe == "Unburned"] <- "1"
+
+# 3. Convert character → factor
+Ter_rast_df$SoilBurnSe <- as.factor(Ter_rast_df$SoilBurnSe)
+
+
+
+
+
+```
+
+- 3e. Try plotting again. 
+
+```{r plot-projected-raster2}
+Holiday_rast_df <- as.data.frame(Holiday_rast, xy = TRUE)
+Beachie_rast_df <- as.data.frame(Beachie_rast, xy = TRUE)
+Ter_rast_df <- as.data.frame(Ter_rast, xy = TRUE)
+
+Holiday_rast_df$Layer_1 <- as.factor(Holiday_rast_df$Layer_1)
+Beachie_rast_df$Layer_1 <- as.factor(Beachie_rast_df$Layer_1)
+
+ggplot() +
+  geom_raster(data = Holiday_rast_df, aes(x = x, y = y, fill = Layer_1)) +
+  geom_raster(data = Ter_rast_df,      aes(x = x, y = y, fill = SoilBurnSe)) +
+  scale_fill_brewer(palette = "Spectral", direction = -1)
+
+
+```
+The scale bar make sense! It would be nice to have a baselayer map to see where is Oregon these fires are.
+
+**Lab part 4: Adding in vector data**
+
+I found a nice ecoregion map on the OR spatial data website. https://spatialdata.oregonexplorer.info/geoportal/details;id=3c7862c4ae664993ad1531907b1e413e
+
+- 4a. Load the data into R, it is in the OR-ecoregions folder.
+
+```{r oreco}
+
+or_ecoregions <- st_read(
+  "/Users/laurenberger/Library/CloudStorage/Dropbox-UniversityofOregon/Lauren Berger/ds-environ/labs/data/OR-ecoregions/Ecoregions_OregonConservationStrategy.shp")
+
+```
+- 4b. Check the projection and re-project if needed. We did not cover this in the lecture demo, but for vector data, use st_transform()
+
+```{r or-crs}
+crs(or_ecoregions, proj = TRUE)
+
+or_ecoregions <- st_transform(or_ecoregions, st_crs(Holiday_rast)) 
+
+```
+
+- 4c. Plot all of the data together (the rasters and vector data). You can layer on geom_sf into ggplot with the other rasters just like you would add another raster. 
+
+```{r plot-projected-raster-withmap}
+
+ggplot() +
+  geom_raster(data = Holiday_rast_df, aes(x = x, y = y, fill = Layer_1)) +
+  geom_raster(data = Ter_rast_df,      aes(x = x, y = y, fill = SoilBurnSe)) +
+  geom_sf(data = or_ecoregions, fill = NA, color = "black", linewidth = 0.3) +
+  scale_fill_brewer(palette = "Spectral", direction = -1)
+
+
+```
+We could get fancy and zoom into the correct region using extent, which we will cover next week. For now, this looks pretty good. 
+
+**Lab part 5: Exploring patterns of fire severity**
+
+- 5a. Create a barplot with the count of each fire severity category. 
+- Use  scale_fill_brewer(palette = "Spectral", direction=-1) to get the bars to match the maps.
+- Plot the proportion on the y. To do this, in geom_bar, include y = (..count..)/sum(..count..). EX: aes(x= Layer_1, y = (..count..)/sum(..count..)
+
+HINT: Rather annoyingly, you will need to convert the layer values to factors again to get fill to recognize them. EX: fill=as.factor(Layer_1)
+
+```{r plot-hist}
+
+ggplot(Holiday_rast_df) +
+    geom_bar(
+        aes(
+            x = as.factor(Layer_1),
+            y = (..count..)/sum(..count..),
+            fill = as.factor(Layer_1)
+        )
+    ) +
+    scale_fill_brewer(palette = "Spectral", direction = -1) +
+    labs(
+        x = "Fire Severity Category",
+        y = "Proportion of Pixels",
+        fill = "Severity"
+    ) +
+    theme_minimal()
+
+
+ggplot(Ter_rast_df) +
+    geom_bar(
+        aes(
+            x = as.factor(SoilBurnSe),
+            y = (..count..)/sum(..count..),
+            fill = as.factor(SoilBurnSe)
+        )
+    ) +
+    scale_fill_brewer(palette = "Spectral", direction = -1) +
+    labs(
+        x = "Fire Severity Category",
+        y = "Proportion of Pixels",
+        fill = "Severity"
+    ) +
+    theme_minimal()
+
+
+ggplot(Beachie_rast_df) +
+    geom_bar(
+        aes(
+            x = as.factor(Layer_1),
+            y = (..count..)/sum(..count..),
+            fill = as.factor(Layer_1)
+        )
+    ) +
+    scale_fill_brewer(palette = "Spectral", direction = -1) +
+    labs(
+        x = "Fire Severity Category",
+        y = "Proportion of Pixels",
+        fill = "Severity"
+    ) +
+    theme_minimal()
+
+
+
+
+```
+
+-5b. What do you notice about the frequency of different severity classes when you compare these barplots. How does this relate to the Haldofsky reading?
+ANSWER: 
+I was unable to get the Beachie fire plot to run; but it appears that Holiday burned at much high severity than the Terwilliger fire did and was much larger. This relates to the Halofsky reading in that fires are becoming increasingly larger and more severe. 
+
+Also, if the legend label bothers you (as it does for me)
+Check out this tutorial:
+https://www.datanovia.com/en/blog/ggplot-legend-title-position-and-labels/
